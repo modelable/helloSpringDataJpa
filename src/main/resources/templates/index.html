@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Product Manager</title>
+    <th:block th:include="common.html"></th:block>
+</head>
+
+<body>
+<div class="container">
+    <h1 class="mt-5">Product List</h1>
+    <a class="btn btn-primary mb-3" th:href="@{/new}">Create New Product</a>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Made In</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <!-- model "listProducts"에 각각 접근 -->
+        <tr th:each="product : ${listProducts}">
+            <td th:text="${product.id}">Product ID</td>
+            <td th:text="${product.name}">Name</td>
+            <td th:text="${product.brand}">Brand</td>
+            <td th:text="${product.madeIn}">Made in</td>
+            <td th:text="${product.price}">Price</td>
+            <td>
+                <a class="btn btn-primary btn-sm" th:href="@{'/edit/' + ${product.id}}">Edit</a>
+                <a class="btn btn-danger btn-sm" th:href="@{'/delete/' + ${product.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
